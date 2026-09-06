@@ -12,39 +12,52 @@
     return getConfig('i18n')?.[key];
   }
 
-  const addButtonToEachUnprocessedEntry = function () {
-    document.querySelectorAll('.flux footer > ul:not(.mark-previous-as-read-processed)').forEach(footerList => {
-      // Create node
-      let li = document.createElement('li');
-      let a = document.createElement('a');
-      let flux = footerList.closest('.flux');
+  const createMarkPreviousAsReadItem = function (flux, fluxName) {
+    let li = document.createElement('li');
+    let a = document.createElement('a');
 
-      let fluxName = footerList.closest('.flux').querySelector('.websiteName')?.textContent;
+    a.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
+    a.setAttribute('href', '#');
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
 
-      a.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
-      a.setAttribute('href', '#');
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        if (getConfig('enable_warning_popup')) {
-          const warning = getConfig('apply_only_to_same_feed_entries')
-            ? t('warningSameFeed').replace('{0}', fluxName ?? t('theSameFeed'))
-            : t('warning')
-          if (!confirm(warning)) {
-            return;
-          }
+      if (getConfig('enable_warning_popup')) {
+        const warning = getConfig('apply_only_to_same_feed_entries')
+          ? t('warningSameFeed').replace('{0}', fluxName ?? t('theSameFeed'))
+          : t('warning')
+        if (!confirm(warning)) {
+          return;
         }
+      }
 
-        markPreviousSameFeedAsRead(flux, flux.dataset.feed);
+      markPreviousSameFeedAsRead(flux, flux.dataset.feed);
 
-        return false;
-      });
+      return false;
+    });
 
-      li.appendChild(a);
-      li.classList.add('item', 'mark-previous-as-read');
+    li.appendChild(a);
+    li.classList.add('item', 'mark-previous-as-read');
 
-      footerList.insertBefore(li, footerList.querySelector('.item.date'));
-      footerList.classList.add('mark-previous-as-read-processed');
+    return li;
+  }
+
+  const addButtonToEachUnprocessedEntry = function () {
+    document.querySelectorAll('.flux').forEach(flux => {
+      const fluxName = flux.querySelector('.websiteName')?.textContent;
+
+      // Button at the top of the entry.
+      const headerList = flux.querySelector(':scope > ul.flux_header:not(.mark-previous-as-read-processed)');
+      if (headerList) {
+        headerList.appendChild(createMarkPreviousAsReadItem(flux, fluxName));
+        headerList.classList.add('mark-previous-as-read-processed');
+      }
+
+      // Button at the bottom of the entry.
+      const footerList = flux.querySelector('footer > ul:not(.mark-previous-as-read-processed)');
+      if (footerList) {
+        footerList.insertBefore(createMarkPreviousAsReadItem(flux, fluxName), footerList.querySelector('.item.date'));
+        footerList.classList.add('mark-previous-as-read-processed');
+      }
     });
   }
 
@@ -61,7 +74,7 @@
 
   const markPreviousSameFeedAsRead = function (div, feedId) {
     let count = 0;
-    const initialDivLink = div.querySelector('.mark-previous-as-read a');
+    const initialDivLinks = div.querySelectorAll('.mark-previous-as-read a');
     const idAsString = String(feedId);
     while (div) {
       if (!getConfig('apply_only_to_same_feed_entries')) {
@@ -78,12 +91,14 @@
         }
       }
 
-      initialDivLink.innerHTML = iconCheckSvg + t('markedEntriesAsRead').replace('{0}', count);
+      initialDivLinks.forEach(initialDivLink => {
+        initialDivLink.innerHTML = iconCheckSvg + t('markedEntriesAsRead').replace('{0}', count);
 
-      // Reset link content after 2 seconds.
-      setTimeout(function () {
-        initialDivLink.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
-      }, 2000);
+        // Reset link content after 2 seconds.
+        setTimeout(function () {
+          initialDivLink.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
+        }, 2000);
+      });
 
       div = div.previousElementSibling;
     }
