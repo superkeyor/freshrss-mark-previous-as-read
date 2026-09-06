@@ -12,8 +12,8 @@
     return getConfig('i18n')?.[key];
   }
 
-  const createMarkPreviousAsReadItem = function (flux, fluxName) {
-    let li = document.createElement('li');
+  const createMarkPreviousAsReadItem = function (flux, fluxName, tagName) {
+    let wrapper = document.createElement(tagName ?? 'li');
     let a = document.createElement('a');
 
     a.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
@@ -35,27 +35,33 @@
       return false;
     });
 
-    li.appendChild(a);
-    li.classList.add('item', 'mark-previous-as-read');
+    wrapper.appendChild(a);
+    wrapper.classList.add('item', 'mark-previous-as-read');
 
-    return li;
+    return wrapper;
   }
 
   const addButtonToEachUnprocessedEntry = function () {
     document.querySelectorAll('.flux').forEach(flux => {
       const fluxName = flux.querySelector('.websiteName')?.textContent;
 
-      // Button at the top of the entry.
-      const headerList = flux.querySelector(':scope > ul.flux_header:not(.mark-previous-as-read-processed)');
-      if (headerList) {
-        headerList.appendChild(createMarkPreviousAsReadItem(flux, fluxName));
-        headerList.classList.add('mark-previous-as-read-processed');
+      // Button next to the date, at the top of the post (single article view).
+      const subtitle = flux.querySelector('.flux_content header .subtitle:not(.mark-previous-as-read-processed)');
+      if (subtitle) {
+        const dateItem = subtitle.querySelector('.date');
+        const item = createMarkPreviousAsReadItem(flux, fluxName, 'div');
+        if (dateItem) {
+          dateItem.insertAdjacentElement('afterend', item);
+        } else {
+          subtitle.appendChild(item);
+        }
+        subtitle.classList.add('mark-previous-as-read-processed');
       }
 
       // Button at the bottom of the entry.
       const footerList = flux.querySelector('footer > ul:not(.mark-previous-as-read-processed)');
       if (footerList) {
-        footerList.insertBefore(createMarkPreviousAsReadItem(flux, fluxName), footerList.querySelector('.item.date'));
+        footerList.insertBefore(createMarkPreviousAsReadItem(flux, fluxName, 'li'), footerList.querySelector('.item.date'));
         footerList.classList.add('mark-previous-as-read-processed');
       }
     });

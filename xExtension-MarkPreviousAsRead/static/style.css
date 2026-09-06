@@ -21,3 +21,8 @@
 .mark-previous-as-read-settings label input[type="checkbox"] {
   margin-right: 10px;
 }
+
+.subtitle .mark-previous-as-read {
+  display: inline-block;
+  margin-left: 0.5rem;
+}

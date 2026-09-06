@@ -1,5 +1,5 @@
 # FreshRSS extension - Mark Previous as Read
-This extension adds a button at the top and bottom of each entry. Clicking this button will mark all previous entries as read.
+This extension adds a button at the top (next to the post date) and at the bottom of each entry. Clicking this button will mark all previous entries as read.
 
 The goal is, when going through a very long list of entries without reading them all, to be able to mark as read what was went through, and continue later.
 
