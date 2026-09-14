@@ -23,6 +23,13 @@
 }
 
 .subtitle .mark-previous-as-read {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.subtitle .mark-previous-as-read a {
+  display: inline-flex;
+  align-items: center;
 }
