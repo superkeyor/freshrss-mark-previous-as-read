@@ -49,7 +49,7 @@
       const subtitle = flux.querySelector('.flux_content header .subtitle:not(.mark-previous-as-read-processed)');
       if (subtitle) {
         const dateItem = subtitle.querySelector('.date');
-        const item = createMarkPreviousAsReadItem(flux, fluxName, 'div');
+        const item = createMarkPreviousAsReadItem(flux, fluxName, 'span');
         if (dateItem) {
           dateItem.insertAdjacentElement('afterend', item);
         } else {
