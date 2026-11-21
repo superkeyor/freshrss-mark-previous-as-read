@@ -21,28 +21,17 @@
   margin-right: 10px;
 }
 
-.subtitle.mark-previous-as-read-processed,
-footer > ul.mark-previous-as-read-processed {
-  position: relative;
-  padding-right: 1.75rem;
-}
-
-.subtitle > .mark-previous-as-read,
-footer > ul > .mark-previous-as-read {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
+.mark-previous-as-read {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
   margin: 0;
   padding: 0;
-  width: auto;
 }
 
 .mark-previous-as-read a {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   padding: 0;
   cursor: pointer;
 }

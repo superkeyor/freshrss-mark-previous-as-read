@@ -50,7 +50,13 @@
       // Button next to the date, at the top of the post (single article view).
       const subtitle = flux.querySelector('.flux_content header .subtitle:not(.mark-previous-as-read-processed)');
       if (subtitle) {
-        subtitle.appendChild(createMarkPreviousAsReadItem(flux, fluxName, 'span'));
+        const dateItem = subtitle.querySelector('.date');
+        const item = createMarkPreviousAsReadItem(flux, fluxName, 'span');
+        if (dateItem) {
+          dateItem.insertAdjacentElement('afterend', item);
+        } else {
+          subtitle.appendChild(item);
+        }
         subtitle.classList.add('mark-previous-as-read-processed');
       }
 
