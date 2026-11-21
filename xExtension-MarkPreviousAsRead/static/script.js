@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="-1 -1 32 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><defs><mask id="mpar-m" maskUnits="userSpaceOnUse" x="-1" y="-1" width="32" height="22"><rect x="-1" y="-1" width="32" height="22" fill="#fff"/><path d="M1 11L10 6L19 11V19H1Z" fill="#000" stroke="#000" stroke-width="3.2"/></mask></defs><g mask="url(#mpar-m)"><path d="M9 5L18 0L27 5V13H9Z M9 5L18 9.5L27 5"/></g><path d="M1 11L10 6L19 11V19H1Z M1 11L10 15.5L19 11"/></svg>';
+  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><defs><mask id="mpar-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><path d="M2 11l8-6.5 8 6.5v9.5H2z" fill="#000" stroke="#000" stroke-width="3.6"/></mask></defs><g mask="url(#mpar-mask)"><path d="M6 8l8-6.5 8 6.5v9.5H6z M6 8l8 5.5 8-5.5"/></g><path d="M2 11l8-6.5 8 6.5v9.5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z M2 11l8 5.5 8-5.5"/></svg>';
   const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
 
   function getConfig (key) {
@@ -16,7 +16,7 @@
     let wrapper = document.createElement(tagName ?? 'li');
     let a = document.createElement('a');
 
-    a.innerHTML = iconArrowSvg;
+    a.innerHTML = iconArrowSvg + ' ' + t('markRead');
     a.title = t('markAllPreviousAsRead');
     a.setAttribute('aria-label', t('markAllPreviousAsRead'));
     a.setAttribute('href', '#');
@@ -53,7 +53,8 @@
         const dateItem = subtitle.querySelector('.date');
         const item = createMarkPreviousAsReadItem(flux, fluxName, 'span');
         if (dateItem) {
-          dateItem.insertAdjacentElement('afterend', item);
+          dateItem.insertAdjacentText('afterend', ' ');
+          dateItem.nextSibling.after(item);
         } else {
           subtitle.appendChild(item);
         }
@@ -101,13 +102,13 @@
 
       initialDivLinks.forEach(initialDivLink => {
         const doneText = t('markedEntriesAsRead').replace('{0}', count);
-        initialDivLink.innerHTML = iconCheckSvg;
+        initialDivLink.innerHTML = iconCheckSvg + ' ' + doneText;
         initialDivLink.title = doneText;
         initialDivLink.setAttribute('aria-label', doneText);
 
         // Reset link content after 2 seconds.
         setTimeout(function () {
-          initialDivLink.innerHTML = iconArrowSvg;
+          initialDivLink.innerHTML = iconArrowSvg + ' ' + t('markRead');
           initialDivLink.title = t('markAllPreviousAsRead');
           initialDivLink.setAttribute('aria-label', t('markAllPreviousAsRead'));
         }, 2000);

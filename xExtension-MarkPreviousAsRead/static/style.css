@@ -32,6 +32,7 @@
 .mark-previous-as-read a {
   display: inline-flex;
   align-items: center;
+  gap: 0.25rem;
   padding: 0;
   cursor: pointer;
 }

@@ -44,6 +44,7 @@ class MarkPreviousAsReadExtension extends Minz_Extension {
       'apply_only_to_same_feed_entries' => FreshRSS_Context::userConf()->attributeBool('apply_only_to_same_feed_entries'),
       'i18n' => [
         'markAllPreviousAsRead' => _t('ext.js.markAllPreviousAsRead'),
+        'markRead' => _t('ext.js.markRead'),
         'markedEntriesAsRead' => _t('ext.js.markedEntriesAsRead'),
         'warningSameFeed' => _t('ext.js.warningSameFeed'),
         'theSameFeed' => _t('ext.js.theSameFeed'),
