@@ -1,6 +1,5 @@
 .mark-previous-as-read svg {
-  margin-right: 0.25rem;
-  margin-bottom: 1px;
+  margin: 0 0 1px;
   vertical-align: middle;
 }
 
@@ -32,4 +31,14 @@
 .subtitle .mark-previous-as-read a {
   display: inline-flex;
   align-items: center;
+}
+
+.mark-previous-as-read a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
 }

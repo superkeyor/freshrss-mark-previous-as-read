@@ -1,8 +1,8 @@
 'use strict';
 
 (function(){
-  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z" /></svg>';
-  const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
+  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z M3 10l9 6 9-6" /></svg>';
+  const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
 
   function getConfig (key) {
     return context.extensions?.MarkPreviousAsRead?.[key];
@@ -16,7 +16,9 @@
     let wrapper = document.createElement(tagName ?? 'li');
     let a = document.createElement('a');
 
-    a.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
+    a.innerHTML = iconArrowSvg;
+    a.title = t('markAllPreviousAsRead');
+    a.setAttribute('aria-label', t('markAllPreviousAsRead'));
     a.setAttribute('href', '#');
     a.addEventListener('click', (e) => {
       e.preventDefault();
@@ -98,11 +100,16 @@
       }
 
       initialDivLinks.forEach(initialDivLink => {
-        initialDivLink.innerHTML = iconCheckSvg + t('markedEntriesAsRead').replace('{0}', count);
+        const doneText = t('markedEntriesAsRead').replace('{0}', count);
+        initialDivLink.innerHTML = iconCheckSvg;
+        initialDivLink.title = doneText;
+        initialDivLink.setAttribute('aria-label', doneText);
 
         // Reset link content after 2 seconds.
         setTimeout(function () {
-          initialDivLink.innerHTML = iconArrowSvg + t('markAllPreviousAsRead');
+          initialDivLink.innerHTML = iconArrowSvg;
+          initialDivLink.title = t('markAllPreviousAsRead');
+          initialDivLink.setAttribute('aria-label', t('markAllPreviousAsRead'));
         }, 2000);
       });
 
