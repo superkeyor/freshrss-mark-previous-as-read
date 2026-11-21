@@ -21,16 +21,30 @@
   margin-right: 10px;
 }
 
-.subtitle .mark-previous-as-read {
+.subtitle.mark-previous-as-read-processed,
+footer > ul.mark-previous-as-read-processed {
+  position: relative;
+  padding-right: 3.25rem;
+}
+
+.subtitle > .mark-previous-as-read,
+footer > ul > .mark-previous-as-read {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  width: auto;
 }
 
 .mark-previous-as-read a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem 0.5rem;
+  min-width: 3rem;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.75rem;
   cursor: pointer;
 }
