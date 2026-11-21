@@ -22,23 +22,15 @@
 }
 
 .subtitle .mark-previous-as-read {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-}
-
-.subtitle .mark-previous-as-read a {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .mark-previous-as-read a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.5rem;
-  min-height: 2rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   cursor: pointer;
 }

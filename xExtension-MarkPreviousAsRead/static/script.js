@@ -1,8 +1,8 @@
 'use strict';
 
 (function(){
-  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z M3 10l9 6 9-6" /></svg>';
-  const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
+  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><defs><mask id="mpar-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><path d="M2 11l8-6.5 8 6.5v9.5H2z" fill="#000" stroke="#000" stroke-width="3.6"/></mask></defs><g mask="url(#mpar-mask)"><path d="M6 8l8-6.5 8 6.5v9.5H6z M6 8l8 5.5 8-5.5"/></g><path d="M2 11l8-6.5 8 6.5v9.5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z M2 11l8 5.5 8-5.5"/></svg>';
+  const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
 
   function getConfig (key) {
     return context.extensions?.MarkPreviousAsRead?.[key];
@@ -50,20 +50,14 @@
       // Button next to the date, at the top of the post (single article view).
       const subtitle = flux.querySelector('.flux_content header .subtitle:not(.mark-previous-as-read-processed)');
       if (subtitle) {
-        const dateItem = subtitle.querySelector('.date');
-        const item = createMarkPreviousAsReadItem(flux, fluxName, 'span');
-        if (dateItem) {
-          dateItem.insertAdjacentElement('afterend', item);
-        } else {
-          subtitle.appendChild(item);
-        }
+        subtitle.appendChild(createMarkPreviousAsReadItem(flux, fluxName, 'span'));
         subtitle.classList.add('mark-previous-as-read-processed');
       }
 
       // Button at the bottom of the entry.
       const footerList = flux.querySelector('footer > ul:not(.mark-previous-as-read-processed)');
       if (footerList) {
-        footerList.insertBefore(createMarkPreviousAsReadItem(flux, fluxName, 'li'), footerList.querySelector('.item.date'));
+        footerList.appendChild(createMarkPreviousAsReadItem(flux, fluxName, 'li'));
         footerList.classList.add('mark-previous-as-read-processed');
       }
     });
