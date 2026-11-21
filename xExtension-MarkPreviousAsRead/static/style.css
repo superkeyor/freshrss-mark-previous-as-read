@@ -24,7 +24,7 @@
 .subtitle.mark-previous-as-read-processed,
 footer > ul.mark-previous-as-read-processed {
   position: relative;
-  padding-right: 3.25rem;
+  padding-right: 1.75rem;
 }
 
 .subtitle > .mark-previous-as-read,
@@ -43,8 +43,6 @@ footer > ul > .mark-previous-as-read {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 3rem;
-  min-height: 2.25rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0;
   cursor: pointer;
 }
