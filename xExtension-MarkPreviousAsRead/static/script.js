@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><defs><mask id="mpar-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><path d="M2 11l8-6.5 8 6.5v9.5H2z" fill="#000" stroke="#000" stroke-width="3.6"/></mask></defs><g transform="translate(8 4) scale(0.62)" stroke-width="2.8"><g mask="url(#mpar-mask)"><path d="M6 8l8-6.5 8 6.5v9.5H6z M6 8l8 5.5 8-5.5"/></g><path d="M2 11l8-6.5 8 6.5v9.5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z M2 11l8 5.5 8-5.5"/></g><path d="M4 20V5 M1 8l3-3.5 3 3.5"/></svg>';
+  const iconArrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><defs><mask id="mpar-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><path d="M2 11l8-6.5 8 6.5v9.5H2z" fill="#000" stroke="#000" stroke-width="3.6"/></mask></defs><g transform="translate(6 3) scale(0.75)" stroke-width="2.0"><g mask="url(#mpar-mask)"><path d="M6 8l8-6.5 8 6.5v9.5H6z M6 8l8 5.5 8-5.5"/></g><path d="M2 11l8-6.5 8 6.5v9.5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z M2 11l8 5.5 8-5.5"/></g><path d="M3.2 20V5 M0.7 7.7l2.5-2.7 2.5 2.7"/></svg>';
   const iconCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" /></svg>';
 
   function getConfig (key) {
